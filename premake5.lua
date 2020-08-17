@@ -10,6 +10,12 @@ workspace "Galaxy"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Galaxy/vendor/GLFW/include"
+
+include "Galaxy/vendor/GLFW"
+
 	project "Galaxy"
 		location "Galaxy"
 		kind "SharedLib"
@@ -30,7 +36,14 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 		includedirs
 		{
 			"%{prj.name}/src",
-			"%{prj.name}/vendor/spdlog/include"	
+			"%{prj.name}/vendor/spdlog/include",
+			"%{IncludeDir.GLFW}"
+		}
+
+		links
+		{
+			"GLFW",
+			"opengl32.lib"
 		}
 
 		filter "system:windows"

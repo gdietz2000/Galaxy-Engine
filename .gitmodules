@@ -1,3 +1,6 @@
 [submodule "Galaxy/vendor/spdlog"]
 	path = Galaxy/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "Galaxy/vendor/GLFW"]
+	path = Galaxy/vendor/GLFW
+	url = https://github.com/gdietz2000/glfw.git
