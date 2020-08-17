@@ -34,6 +34,7 @@
     <ClInclude Include="src\Galaxy\Log.h">
       <Filter>Galaxy</Filter>
     </ClInclude>
+    <ClInclude Include="src\gxpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Galaxy\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Galaxy\Log.cpp">
       <Filter>Galaxy</Filter>
     </ClCompile>
+    <ClCompile Include="src\gxpch.cpp" />
   </ItemGroup>
 </Project>

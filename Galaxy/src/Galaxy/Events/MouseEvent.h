@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Galaxy
 {
 	class GALAXY_API MouseButtonEvent : public Event
