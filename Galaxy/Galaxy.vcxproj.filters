@@ -4,6 +4,9 @@
     <Filter Include="Galaxy">
       <UniqueIdentifier>{CB7795B4-B719-C08A-A0D4-D3DE8C1547DB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Galaxy\Events">
+      <UniqueIdentifier>{4F1193D8-BBD1-0E0F-840C-588CF08B53EB}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Galaxy.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Galaxy\EntryPoint.h">
       <Filter>Galaxy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Events\ApplicationEvent.h">
+      <Filter>Galaxy\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Events\Event.h">
+      <Filter>Galaxy\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Events\KeyEvent.h">
+      <Filter>Galaxy\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Events\MouseEvent.h">
+      <Filter>Galaxy\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Galaxy\Log.h">
       <Filter>Galaxy</Filter>
