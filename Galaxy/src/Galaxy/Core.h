@@ -11,7 +11,7 @@
 #endif
 
 #ifdef GX_DEBUG
-	#define GX_ENABLE_ASSERTS
+	//#define GX_ENABLE_ASSERTS
 #endif
 
 #ifdef GX_ENABLE_ASSERTS
