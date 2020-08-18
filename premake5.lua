@@ -64,14 +64,17 @@ include "Galaxy/vendor/GLFW"
 
 		filter "configurations:Debug"
 			defines "GX_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "GX_RELEASE"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "GX_DIST"
+			buildoptions "/MD"
 			optimize "On"
 
 	project "Sandbox"
@@ -111,12 +114,15 @@ include "Galaxy/vendor/GLFW"
 
 		filter "configurations:Debug"
 			defines "GX_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "GX_RELEASE"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "GX_DIST"
+			buildoptions "/MD"
 			optimize "On"

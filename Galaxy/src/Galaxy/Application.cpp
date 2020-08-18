@@ -21,12 +21,27 @@ namespace Galaxy
 	
 	}
 
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		m_LayerStack.PopOverlay(overlay);
+	}
+
 	void Application::OnEvent(Event& event)
 	{
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
 
-		GX_CORE_TRACE("{0}", event);
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		{
+			(*--it)->OnEvent(event);
+			if (event.m_Handled)
+				break;
+		}
 	}
 
 	void Application::Run()
@@ -35,8 +50,11 @@ namespace Galaxy
 		{
 			glClearColor(1, 0, 0, 0);
 			glClear(GL_COLOR_BUFFER_BIT);
-			m_Window->OnUpdate();
 
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
+
+			m_Window->OnUpdate();
 		}
 	}
 
