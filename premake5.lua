@@ -24,6 +24,7 @@ include "Galaxy/vendor/ImGui"
 		location "Galaxy"
 		kind "SharedLib"
 		language "C++"
+		staticruntime "off"
 
 		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -56,7 +57,6 @@ include "Galaxy/vendor/ImGui"
 
 		filter "system:windows"
 			cppdialect "C++17"
-			staticruntime "On"
 			systemversion "latest"
 
 			defines 
@@ -73,23 +73,24 @@ include "Galaxy/vendor/ImGui"
 
 		filter "configurations:Debug"
 			defines "GX_DEBUG"
-			buildoptions "/MDd"
+			runtime "Debug"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "GX_RELEASE"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "GX_DIST"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 	project "Sandbox"
 		location "Sandbox"
 		kind "ConsoleApp"
 		language "C++"
+		staticruntime "off"
 
 		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -113,7 +114,6 @@ include "Galaxy/vendor/ImGui"
 
 		filter "system:windows"
 			cppdialect "C++17"
-			staticruntime "On"
 			systemversion "latest"
 
 			defines 
@@ -123,15 +123,15 @@ include "Galaxy/vendor/ImGui"
 
 		filter "configurations:Debug"
 			defines "GX_DEBUG"
-			buildoptions "/MDd"
+			runtime "Debug"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "GX_RELEASE"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "GX_DIST"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
