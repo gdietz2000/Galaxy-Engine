@@ -21,7 +21,7 @@ namespace Galaxy
 			: m_Width(width), m_Height(height) {}
 
 		inline unsigned int GetWidth() const { return m_Width; }
-		inline unsigned int Getheight() const { return m_Height; }
+		inline unsigned int GetHeight() const { return m_Height; }
 
 		std::string ToString() const override 
 		{

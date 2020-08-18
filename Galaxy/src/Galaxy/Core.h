@@ -19,3 +19,5 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+#define GX_BIND(x) std::bind(&x, this, std::placeholders::_1)
