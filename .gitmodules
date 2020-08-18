@@ -4,3 +4,6 @@
 [submodule "Galaxy/vendor/GLFW"]
 	path = Galaxy/vendor/GLFW
 	url = https://github.com/gdietz2000/glfw.git
+[submodule "Galaxy/vendor/ImGui"]
+	path = Galaxy/vendor/ImGui
+	url = https://github.com/gdietz2000/imgui

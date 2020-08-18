@@ -7,8 +7,14 @@
     <Filter Include="Galaxy\Events">
       <UniqueIdentifier>{4F1193D8-BBD1-0E0F-840C-588CF08B53EB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Galaxy\ImGui">
+      <UniqueIdentifier>{355909E0-21BC-9884-CA41-D13AB6836407}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGl">
+      <UniqueIdentifier>{3E7D2C1D-AA08-9AE1-B319-1DD61F24F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Galaxy\Events\MouseEvent.h">
       <Filter>Galaxy\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Galaxy\ImGui\ImGuiLayer.h">
+      <Filter>Galaxy\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Galaxy\Layer.h">
       <Filter>Galaxy</Filter>
     </ClInclude>
@@ -49,6 +58,9 @@
     <ClInclude Include="src\Galaxy\Window.h">
       <Filter>Galaxy</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\ImGuiOpenGlRenderer.h">
+      <Filter>Platform\OpenGl</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -58,11 +70,17 @@
     <ClCompile Include="src\Galaxy\Application.cpp">
       <Filter>Galaxy</Filter>
     </ClCompile>
+    <ClCompile Include="src\Galaxy\ImGui\ImGuiLayer.cpp">
+      <Filter>Galaxy\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Galaxy\LayerStack.cpp">
       <Filter>Galaxy</Filter>
     </ClCompile>
     <ClCompile Include="src\Galaxy\Log.cpp">
       <Filter>Galaxy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\ImGuiOpenGlRenderer.cpp">
+      <Filter>Platform\OpenGl</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

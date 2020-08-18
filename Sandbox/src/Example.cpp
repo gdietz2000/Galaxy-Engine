@@ -19,7 +19,11 @@ public:
 class Sandbox : public Galaxy::Application
 {
 public:
-	Sandbox() { PushLayer(new ExampleLayer()); }
+	Sandbox() 
+	{ 
+		PushLayer(new ExampleLayer());
+		PushOverlay(new Galaxy::ImGuiLayer());
+	}
 
 	~Sandbox(){}
 };
