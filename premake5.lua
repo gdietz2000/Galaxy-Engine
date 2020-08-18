@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Galaxy/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Galaxy/vendor/Glad/include"
 
 include "Galaxy/vendor/GLFW"
+include "Galaxy/vendor/Glad"
 
 	project "Galaxy"
 		location "Galaxy"
@@ -37,12 +39,14 @@ include "Galaxy/vendor/GLFW"
 		{
 			"%{prj.name}/src",
 			"%{prj.name}/vendor/spdlog/include",
-			"%{IncludeDir.GLFW}"
+			"%{IncludeDir.GLFW}",
+			"%{IncludeDir.GLAD}"
 		}
 
 		links
 		{
 			"GLFW",
+			"GLAD",
 			"opengl32.lib"
 		}
 
@@ -54,7 +58,8 @@ include "Galaxy/vendor/GLFW"
 			defines 
 			{
 				"GX_PLATFORM_WINDOWS",
-				"GX_BUILD_DLL"
+				"GX_BUILD_DLL",
+				"GLFW_INCLUDE_NONE"
 			}
 
 			postbuildcommands
