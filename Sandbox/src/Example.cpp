@@ -7,12 +7,17 @@ public:
 
 	void OnUpdate() override 
 	{
-		GX_INFO("ExampleLayer::Update");
+		if (Galaxy::Input::IsKeyPressed(GX_KEY_TAB))
+			GX_TRACE("Tab key is pressed!");
 	}
 
 	void OnEvent(Galaxy::Event& event) override
 	{
-		GX_TRACE("{0}", event);
+		if (event.GetEventType() == Galaxy::EventType::KeyPressed)
+		{
+			Galaxy::KeyPressedEvent& e = (Galaxy::KeyPressedEvent&)event;
+			GX_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 
