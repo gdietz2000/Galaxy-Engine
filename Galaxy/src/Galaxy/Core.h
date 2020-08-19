@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef GX_PLATFORM_WINDOWS
-	#ifdef GX_BUILD_DLL
-		#define GALAXY_API __declspec(dllexport)
+	#if GX_DYNAMIC_LINK
+		#ifdef GX_BUILD_DLL
+			#define GALAXY_API __declspec(dllexport)
+		#else
+			#define GALAXY_API __declspec(dllimport)
+		#endif
 	#else
-		#define GALAXY_API __declspec(dllimport)
+		#define GALAXY_API
 	#endif
 #else
 	#error Galaxy only supports windows!

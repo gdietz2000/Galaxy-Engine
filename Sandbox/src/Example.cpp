@@ -1,9 +1,14 @@
 #include <Galaxy.h>
 
+#include "ImGui/imgui.h"
+
 class ExampleLayer : public Galaxy::Layer
 {
 public:
-	ExampleLayer() : Layer("Example") {}
+	ExampleLayer() : Layer("Example") 
+	{
+
+	}
 
 	void OnUpdate() override 
 	{
@@ -19,6 +24,13 @@ public:
 			GX_TRACE("{0}", (char)e.GetKeyCode());
 		}
 	}
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Bitch Box");
+		ImGui::Text("Sup Bitch");
+		ImGui::End();
+	}
 };
 
 class Sandbox : public Galaxy::Application
@@ -27,7 +39,6 @@ public:
 	Sandbox() 
 	{ 
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Galaxy::ImGuiLayer());
 	}
 
 	~Sandbox(){}

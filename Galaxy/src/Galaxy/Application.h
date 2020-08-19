@@ -9,6 +9,8 @@
 #include "Events/MouseEvent.h"
 #include "Window.h"
 
+#include "Galaxy/ImGui/ImGuiLayer.h"
+
 namespace Galaxy
 {
 	class GALAXY_API Application
@@ -30,6 +32,7 @@ namespace Galaxy
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

@@ -17,6 +17,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Galaxy/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Galaxy/vendor/Glad/include"
 IncludeDir["ImGui"] = "Galaxy/vendor/ImGui"
+IncludeDir["glm"] = "Galaxy/vendor/glm"
 
 include "Galaxy/vendor/GLFW"
 include "Galaxy/vendor/Glad"
@@ -24,9 +25,10 @@ include "Galaxy/vendor/ImGui"
 
 	project "Galaxy"
 		location "Galaxy"
-		kind "SharedLib"
+		kind "StaticLib"
 		language "C++"
-		staticruntime "off"
+		cppdialect "C++17"
+		staticruntime "on"
 
 		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -37,7 +39,9 @@ include "Galaxy/vendor/ImGui"
 		files
 		{
 			"%{prj.name}/src/**.h",
-			"%{prj.name}/src/**.cpp"
+			"%{prj.name}/src/**.cpp",
+			"%{prj.name}/vendor/glm/glm/**.hpp",
+			"%{prj.name}/vendor/glm/glm/**.inl"
 		}
 
 		includedirs
@@ -47,6 +51,12 @@ include "Galaxy/vendor/ImGui"
 			"%{IncludeDir.GLFW}",
 			"%{IncludeDir.GLAD}",
 			"%{IncludeDir.ImGui}",
+			"%{IncludeDir.glm}"
+		}
+
+		defines
+		{
+			"_CRT_SECURE_NO_WARNINGS"
 		}
 
 		links
@@ -58,7 +68,6 @@ include "Galaxy/vendor/ImGui"
 		}
 
 		filter "system:windows"
-			cppdialect "C++17"
 			systemversion "latest"
 
 			defines 
@@ -66,11 +75,6 @@ include "Galaxy/vendor/ImGui"
 				"GX_PLATFORM_WINDOWS",
 				"GX_BUILD_DLL",
 				"GLFW_INCLUDE_NONE"
-			}
-
-			postbuildcommands
-			{
-				("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 			}
 
 		filter "configurations:Debug"
@@ -92,7 +96,8 @@ include "Galaxy/vendor/ImGui"
 		location "Sandbox"
 		kind "ConsoleApp"
 		language "C++"
-		staticruntime "off"
+		cppdialect "C++17" 
+		staticruntime "on"
 
 		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -106,7 +111,9 @@ include "Galaxy/vendor/ImGui"
 		includedirs
 		{
 			"Galaxy/src",
-			"Galaxy/vendor/spdlog/include"	
+			"Galaxy/vendor/spdlog/include",
+			"%{IncludeDir.glm}",
+			"Galaxy/vendor"
 		}
 
 		links
@@ -115,7 +122,6 @@ include "Galaxy/vendor/ImGui"
 		}
 
 		filter "system:windows"
-			cppdialect "C++17"
 			systemversion "latest"
 
 			defines 

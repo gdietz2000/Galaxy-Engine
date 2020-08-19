@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Galaxy/Window.h"
+#include "Galaxy/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -27,6 +28,7 @@ namespace Galaxy
 		virtual void Shutdown();
 
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

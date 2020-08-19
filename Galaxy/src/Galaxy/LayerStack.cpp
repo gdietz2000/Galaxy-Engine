@@ -5,7 +5,7 @@ namespace Galaxy
 {
 	LayerStack::LayerStack()
 	{
-		m_LayerIter = m_Layers.begin();
+
 	}
 
 	LayerStack::~LayerStack()
@@ -16,7 +16,8 @@ namespace Galaxy
 
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		m_LayerIter = m_Layers.emplace(m_LayerIter, layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayerIterIndex, layer);
+		m_LayerIterIndex++;
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
@@ -30,7 +31,7 @@ namespace Galaxy
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
-			m_LayerIter--;
+			m_LayerIterIndex--;
 		}
 	}
 
