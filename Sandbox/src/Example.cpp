@@ -27,9 +27,7 @@ public:
 
 	void OnImGuiRender() override
 	{
-		ImGui::Begin("Bitch Box");
-		ImGui::Text("Sup Bitch");
-		ImGui::End();
+
 	}
 };
 
