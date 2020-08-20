@@ -10,8 +10,8 @@ namespace Galaxy
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None: GX_CORE_ASSERT(false, "RendererAPI::None is not supported"); return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLVertexArray();
+		case RendererAPI::API::None: GX_CORE_ASSERT(false, "RendererAPI::None is not supported"); return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
 		default:
 			GX_CORE_ASSERT(false, "Unknown RendererAPI!");
 			return nullptr;

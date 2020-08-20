@@ -140,6 +140,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Galaxy\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Galaxy\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Galaxy\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Platform\OpenGl\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLVertexArray.h" />
     <ClInclude Include="src\Galaxy.h" />
     <ClInclude Include="src\Galaxy\Application.h" />
@@ -577,6 +581,10 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Galaxy\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Galaxy\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\Galaxy\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\Platform\OpenGl\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Galaxy\Application.cpp" />
     <ClCompile Include="src\Galaxy\ImGui\ImGuiBuild.cpp" />

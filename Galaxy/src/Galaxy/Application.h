@@ -15,6 +15,8 @@
 #include "Galaxy/Renderer/Buffer.h"
 #include "Galaxy/Renderer/VertexArray.h"
 
+#include "Galaxy/Renderer/OrthographicCamera.h"
+
 namespace Galaxy
 {
 	class GALAXY_API Application
@@ -45,6 +47,8 @@ namespace Galaxy
 
 		std::shared_ptr<VertexArray> m_VertexArray;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 
 		static Application* s_Instance;
 	};

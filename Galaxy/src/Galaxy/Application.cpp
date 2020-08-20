@@ -3,9 +3,10 @@
 
 #include "Log.h"
 
-#include <glad/glad.h>
+#include "Galaxy/Renderer/Renderer.h"
 
 #include "Input.h"
+
 
 namespace Galaxy
 {
@@ -16,6 +17,7 @@ namespace Galaxy
 
 
 	Application::Application()
+		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		GX_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -83,6 +85,8 @@ namespace Galaxy
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 
+			uniform mat4 u_ViewProjection;
+
 			out vec3 v_Position;
 			out vec4 v_Color;
 
@@ -90,7 +94,7 @@ namespace Galaxy
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = vec4(a_Position, 1.0f);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0f);
 			}
 		)";
 
@@ -118,10 +122,12 @@ namespace Galaxy
 
 			out vec3 v_Position;
 
+			uniform mat4 u_ViewProjection;
+
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = vec4(a_Position, 1.0f);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0f);
 			}
 		)";
 
@@ -176,17 +182,19 @@ namespace Galaxy
 	{
 		while (m_Running)
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
 
-			m_BlueShader->Bind();
-			m_SquareVA->Bind();
-			glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			m_Camera.SetPosition({ 0.5f,0.5f,0.0f });
+			m_Camera.SetRotation(45.0f);
 
+			Renderer::BeginScene(m_Camera);
 
-			m_Shader->Bind();
-			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_SquareVA, m_BlueShader);
+
+			Renderer::Submit(m_VertexArray, m_Shader);
+
+			Renderer::EndScene();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
