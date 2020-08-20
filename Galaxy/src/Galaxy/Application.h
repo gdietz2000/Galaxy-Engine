@@ -9,6 +9,8 @@
 #include "Events/MouseEvent.h"
 #include "Window.h"
 
+#include "Core/Timestep.h"
+
 #include "Galaxy/ImGui/ImGuiLayer.h"
 
 namespace Galaxy
@@ -35,7 +37,7 @@ namespace Galaxy
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
+		float m_LastFrameTime = 0;
 		static Application* s_Instance;
 	};
 

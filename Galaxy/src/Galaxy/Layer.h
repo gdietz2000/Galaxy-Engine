@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Galaxy/Core.h"
+#include "Galaxy/Core/Timestep.h"
 #include "Galaxy/Events/Event.h"
 
 namespace Galaxy
@@ -13,7 +14,7 @@ namespace Galaxy
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& e) {}
 

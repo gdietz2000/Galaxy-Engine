@@ -2,11 +2,13 @@
 
 #include "ImGui/imgui.h"
 
+#include "glm/gtc/matrix_transform.hpp"
+
 class ExampleLayer : public Galaxy::Layer
 {
 public:
 	ExampleLayer() : Layer("Example"),
-		m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f), m_SquarePosition(0.0f)
 	{
 		m_VertexArray.reset(Galaxy::VertexArray::Create());
 
@@ -37,10 +39,10 @@ public:
 		m_SquareVA.reset(Galaxy::VertexArray::Create());
 
 		float squareVertices[3 * 4] = {
-		   -0.75f, -0.75f, 0.0f,
-			0.75f, -0.75f, 0.0f,
-			0.75f,  0.75f, 0.0f,
-		   -0.75f,  0.75f, 0.0f,
+		   -0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.5f,  0.5f, 0.0f,
+		   -0.5f,  0.5f, 0.0f,
 		};
 
 		std::shared_ptr<Galaxy::VertexBuffer> squareVB;
@@ -60,6 +62,7 @@ public:
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 
+			uniform mat4 u_Model;
 			uniform mat4 u_ViewProjection;
 
 			out vec3 v_Position;
@@ -69,7 +72,7 @@ public:
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0f);
+				gl_Position = u_ViewProjection * u_Model * vec4(a_Position, 1.0f);
 			}
 		)";
 
@@ -97,12 +100,13 @@ public:
 
 			out vec3 v_Position;
 
+			uniform mat4 u_Model;
 			uniform mat4 u_ViewProjection;
 
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0f);
+				gl_Position = u_ViewProjection * u_Model * vec4(a_Position, 1.0f);
 			}
 		)";
 
@@ -123,26 +127,27 @@ public:
 		m_BlueShader.reset(new Galaxy::Shader(blueVertexSrc, blueFragSrc));
 	}
 
-	void OnUpdate() override 
+	void OnUpdate(Galaxy::Timestep ts) override 
 	{
+		GX_TRACE("Delta time {0}s, ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
+
 		if (Galaxy::Input::IsKeyPressed(GX_KEY_LEFT))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 
 		if (Galaxy::Input::IsKeyPressed(GX_KEY_RIGHT))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 
 		if (Galaxy::Input::IsKeyPressed(GX_KEY_UP))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
 		if (Galaxy::Input::IsKeyPressed(GX_KEY_DOWN))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 
 		if (Galaxy::Input::IsKeyPressed(GX_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 		
 		if (Galaxy::Input::IsKeyPressed(GX_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed;
-
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
 		Galaxy::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Galaxy::RenderCommand::Clear();
@@ -152,8 +157,17 @@ public:
 
 		Galaxy::Renderer::BeginScene(m_Camera);
 
-		Galaxy::Renderer::Submit(m_SquareVA, m_BlueShader);
-
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+		for (int y = 0; y < 20; ++y)
+		{
+			for (int x = 0; x < 20; ++x)
+			{
+				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Galaxy::Renderer::Submit(m_SquareVA, m_BlueShader, transform);
+			}
+		}
+	
 		Galaxy::Renderer::Submit(m_VertexArray, m_Shader);
 
 		Galaxy::Renderer::EndScene();
@@ -179,8 +193,8 @@ private:
 	Galaxy::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
 	float m_CameraRotation = 0;
-	float m_CameraMoveSpeed = 0.1f;
-	float m_CameraRotationSpeed = 2;
+	float m_CameraMoveSpeed = 5.0f;
+	float m_CameraRotationSpeed = 180.0f;
 };
 
 class Sandbox : public Galaxy::Application
