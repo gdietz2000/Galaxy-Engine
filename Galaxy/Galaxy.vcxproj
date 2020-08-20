@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLVertexArray.h" />
     <ClInclude Include="src\Galaxy.h" />
     <ClInclude Include="src\Galaxy\Application.h" />
     <ClInclude Include="src\Galaxy\Core.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="src\Galaxy\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Galaxy\Renderer\Renderer.h" />
     <ClInclude Include="src\Galaxy\Renderer\Shader.h" />
+    <ClInclude Include="src\Galaxy\Renderer\VertexArray.h" />
     <ClInclude Include="src\Galaxy\Window.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h" />
@@ -575,6 +577,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Galaxy\Application.cpp" />
     <ClCompile Include="src\Galaxy\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Galaxy\ImGui\ImGuiLayer.cpp" />
@@ -583,6 +586,7 @@
     <ClCompile Include="src\Galaxy\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Galaxy\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />

@@ -13,6 +13,7 @@
 
 #include "Galaxy/Renderer/Shader.h"
 #include "Galaxy/Renderer/Buffer.h"
+#include "Galaxy/Renderer/VertexArray.h"
 
 namespace Galaxy
 {
@@ -39,11 +40,11 @@ namespace Galaxy
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<Shader> m_BlueShader;
 
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<VertexArray> m_VertexArray;
+		std::shared_ptr<VertexArray> m_SquareVA;
 
 		static Application* s_Instance;
 	};
