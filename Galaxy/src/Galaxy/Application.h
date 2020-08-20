@@ -11,12 +11,6 @@
 
 #include "Galaxy/ImGui/ImGuiLayer.h"
 
-#include "Galaxy/Renderer/Shader.h"
-#include "Galaxy/Renderer/Buffer.h"
-#include "Galaxy/Renderer/VertexArray.h"
-
-#include "Galaxy/Renderer/OrthographicCamera.h"
-
 namespace Galaxy
 {
 	class GALAXY_API Application
@@ -41,14 +35,6 @@ namespace Galaxy
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<Shader> m_BlueShader;
-
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 
 		static Application* s_Instance;
 	};
