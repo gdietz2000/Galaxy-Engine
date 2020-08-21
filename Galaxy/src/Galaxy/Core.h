@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef GX_PLATFORM_WINDOWS
 	#if GX_DYNAMIC_LINK
 		#ifdef GX_BUILD_DLL
@@ -27,9 +29,15 @@
 	#define GX_CORE_ASSERT(x, ...)
 #endif
 
-
-
-
 #define BIT(x) (1 << x)
 
 #define GX_BIND(x) std::bind(&x, this, std::placeholders::_1)
+
+namespace Galaxy
+{
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+}
