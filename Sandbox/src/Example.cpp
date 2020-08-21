@@ -41,17 +41,20 @@ public:
 
 		m_SquareVA.reset(Galaxy::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-		   -0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.5f,  0.5f, 0.0f,
-		   -0.5f,  0.5f, 0.0f,
+		float squareVertices[5 * 4] = {
+		   -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+		   -0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
 		};
 
 		Galaxy::Ref<Galaxy::VertexBuffer> squareVB;
 		squareVB.reset(Galaxy::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
-		squareVB->SetLayout({ {"a_Position", Galaxy::ShaderDataType::Float3} });
+		squareVB->SetLayout({ 
+			{"a_Position", Galaxy::ShaderDataType::Float3},
+			{"a_TexCoord", Galaxy::ShaderDataType::Float2},
+			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		unsigned int squareIndices[6] = { 0,1,2, 2,3,0 };
@@ -130,9 +133,51 @@ public:
 		)";
 
 		m_FlatColorShader.reset(Galaxy::Shader::Create(flatColorVertexSrc, flatColorFragSrc));
+
+		std::string textureVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_Model;
+			uniform mat4 u_ViewProjection;
+
+			out vec2 v_TexCoord; 
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Model * vec4(a_Position, 1.0f);
+			}
+		)";
+
+		std::string textureFragSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+	
+		)";
+
+		m_TextureShader.reset(Galaxy::Shader::Create(textureVertexSrc, textureFragSrc));
+
+		m_Texture = Galaxy::Texture2D::Create("assets/textures/Missing.png");
+		m_Transparent = Galaxy::Texture2D::Create("assets/textures/Transparent.png");
+
+		std::dynamic_pointer_cast<Galaxy::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Galaxy::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
-	void OnUpdate(Galaxy::Timestep ts) override 
+	void OnUpdate(Galaxy::Timestep ts) override
 	{
 		GX_TRACE("Delta time {0}s, ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
 
@@ -150,7 +195,7 @@ public:
 
 		if (Galaxy::Input::IsKeyPressed(GX_KEY_A))
 			m_CameraRotation += m_CameraRotationSpeed * ts;
-		
+
 		if (Galaxy::Input::IsKeyPressed(GX_KEY_D))
 			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
@@ -163,9 +208,6 @@ public:
 		Galaxy::Renderer::BeginScene(m_Camera);
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-
-		glm::vec4 redColor(0.8, 0.2, 0.3f, 1.0f);
-		glm::vec4 blueColor(0.3, 0.2, 0.8f, 1.0f);
 
 		//Galaxy::MaterialRef material = new Galaxy::Material(m_FlatColorShader);
 
@@ -181,8 +223,11 @@ public:
 				Galaxy::Renderer::Submit(m_SquareVA, m_FlatColorShader, transform);
 			}
 		}
-	
-		Galaxy::Renderer::Submit(m_VertexArray, m_Shader);
+
+		m_Texture->Bind();
+		Galaxy::Renderer::Submit(m_SquareVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_Transparent->Bind();
+		Galaxy::Renderer::Submit(m_SquareVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		Galaxy::Renderer::EndScene();
 	}
@@ -201,7 +246,9 @@ public:
 
 private:
 	Galaxy::Ref<Galaxy::Shader> m_Shader;
-	Galaxy::Ref<Galaxy::Shader> m_FlatColorShader;
+	Galaxy::Ref<Galaxy::Shader> m_FlatColorShader, m_TextureShader;
+
+	Galaxy::Ref<Galaxy::Texture2D> m_Texture, m_Transparent;
 
 	Galaxy::Ref<Galaxy::VertexArray> m_VertexArray;
 	Galaxy::Ref<Galaxy::VertexArray> m_SquareVA;
@@ -218,12 +265,12 @@ private:
 class Sandbox : public Galaxy::Application
 {
 public:
-	Sandbox() 
-	{ 
+	Sandbox()
+	{
 		PushLayer(new ExampleLayer());
 	}
 
-	~Sandbox(){}
+	~Sandbox() {}
 };
 
 Galaxy::Application* Galaxy::CreateApplication()

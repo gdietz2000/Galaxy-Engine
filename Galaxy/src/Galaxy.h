@@ -18,6 +18,7 @@
 #include "Galaxy/Renderer/RenderCommand.h"
 #include "Galaxy/Renderer/Buffer.h"
 #include "Galaxy/Renderer/Shader.h"
+#include "Galaxy/Renderer/Texture.h"
 #include "Galaxy/Renderer/VertexArray.h"
 #include "Galaxy/Renderer/OrthographicCamera.h"
 

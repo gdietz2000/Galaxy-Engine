@@ -6,7 +6,7 @@
 
 namespace Galaxy
 {
-	class GALAXY_API Log
+	class Log
 	{
 	public:
 		static void Init();

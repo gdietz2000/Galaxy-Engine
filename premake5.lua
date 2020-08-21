@@ -18,6 +18,7 @@ IncludeDir["GLFW"] = "Galaxy/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Galaxy/vendor/Glad/include"
 IncludeDir["ImGui"] = "Galaxy/vendor/ImGui"
 IncludeDir["glm"] = "Galaxy/vendor/glm"
+IncludeDir["stb_image"] = "Galaxy/vendor/stb_image"
 
 include "Galaxy/vendor/GLFW"
 include "Galaxy/vendor/Glad"
@@ -40,8 +41,10 @@ include "Galaxy/vendor/ImGui"
 		{
 			"%{prj.name}/src/**.h",
 			"%{prj.name}/src/**.cpp",
+			"%{prj.name}/vendor/stb_image/**.h",
+			"%{prj.name}/vendor/stb_image/**.cpp",
 			"%{prj.name}/vendor/glm/glm/**.hpp",
-			"%{prj.name}/vendor/glm/glm/**.inl"
+			"%{prj.name}/vendor/glm/glm/**.inl",
 		}
 
 		includedirs
@@ -51,7 +54,8 @@ include "Galaxy/vendor/ImGui"
 			"%{IncludeDir.GLFW}",
 			"%{IncludeDir.GLAD}",
 			"%{IncludeDir.ImGui}",
-			"%{IncludeDir.glm}"
+			"%{IncludeDir.glm}",
+			"%{IncludeDir.stb_image}"
 		}
 
 		defines
