@@ -24,4 +24,4 @@
 #include "Galaxy/Renderer/OrthographicCameraController.h"
 
 
-#include "Galaxy/Core/EntryPoint.h"
+//#include "Galaxy/Core/EntryPoint.h"

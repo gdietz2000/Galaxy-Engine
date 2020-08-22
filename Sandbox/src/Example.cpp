@@ -7,13 +7,17 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+#include "Sandbox2D.h"
+
+#include "Galaxy/Core/EntryPoint.h"
+
 class ExampleLayer : public Galaxy::Layer
 {
 public:
 	ExampleLayer() : Layer("Example"),
 		m_CameraController(16.0f / 9.0f, true)
 	{
-		m_VertexArray.reset(Galaxy::VertexArray::Create());
+		m_VertexArray = Galaxy::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f,-0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
@@ -22,7 +26,7 @@ public:
 		};
 
 		Galaxy::Ref<Galaxy::VertexBuffer> m_VertexBuffer;
-		m_VertexBuffer.reset(Galaxy::VertexBuffer::Create(vertices, sizeof(vertices)));
+		m_VertexBuffer = Galaxy::VertexBuffer::Create(vertices, sizeof(vertices));
 		Galaxy::BufferLayout layout =
 		{
 			{"a_Position", Galaxy::ShaderDataType::Float3},
@@ -34,12 +38,12 @@ public:
 
 		unsigned int indices[3] = { 0,1,2 };
 		Galaxy::Ref<Galaxy::IndexBuffer> m_IndexBuffer;
-		m_IndexBuffer.reset(Galaxy::IndexBuffer::Create(indices, 3));
+		m_IndexBuffer = Galaxy::IndexBuffer::Create(indices, 3);
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
 		//SQUARE
 
-		m_SquareVA.reset(Galaxy::VertexArray::Create());
+		m_SquareVA = Galaxy::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 		   -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -49,7 +53,7 @@ public:
 		};
 
 		Galaxy::Ref<Galaxy::VertexBuffer> squareVB;
-		squareVB.reset(Galaxy::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = Galaxy::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 
 		squareVB->SetLayout({ 
 			{"a_Position", Galaxy::ShaderDataType::Float3},
@@ -59,7 +63,7 @@ public:
 
 		unsigned int squareIndices[6] = { 0,1,2, 2,3,0 };
 		Galaxy::Ref<Galaxy::IndexBuffer> squareIB;
-		squareIB.reset(Galaxy::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		squareIB = Galaxy::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(
@@ -211,7 +215,8 @@ class Sandbox : public Galaxy::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() {}
