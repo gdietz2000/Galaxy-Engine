@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Galaxy/Log.h"
+#include "Galaxy/Core/Log.h"
 
 namespace Galaxy
 {

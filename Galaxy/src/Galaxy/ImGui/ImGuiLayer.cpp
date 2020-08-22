@@ -5,7 +5,7 @@
 #include "examples/imgui_impl_opengl3.h"
 #include "examples/imgui_impl_glfw.h"
 
-#include "Galaxy/Application.h"
+#include "Galaxy/Core/Application.h"
 
 //Temporary
 #include <GLFW/glfw3.h>

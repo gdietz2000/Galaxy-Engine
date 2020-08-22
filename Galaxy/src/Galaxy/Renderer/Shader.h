@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Galaxy/Core.h"
+#include "Galaxy/Core/Core.h"
 #include <string>
 namespace Galaxy
 {

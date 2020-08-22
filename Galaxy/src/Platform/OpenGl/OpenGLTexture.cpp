@@ -1,7 +1,7 @@
 #include "gxpch.h"
 #include "OpenGLTexture.h"
 
-#include "Galaxy/Log.h"
+#include "Galaxy/Core/Log.h"
 
 #include <glad/glad.h>
 

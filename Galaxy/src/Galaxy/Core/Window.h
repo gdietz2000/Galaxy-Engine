@@ -3,7 +3,7 @@
 
 #include "Core.h"
 #include "Log.h"
-#include "Events/Event.h"
+#include "Galaxy/Events/Event.h"
 
 namespace Galaxy
 {

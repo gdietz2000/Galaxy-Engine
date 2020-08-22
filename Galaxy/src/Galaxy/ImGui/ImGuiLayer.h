@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Galaxy/Layer.h"
+#include "Galaxy/Core/Layer.h"
 #include "Galaxy/Events/ApplicationEvent.h"
 #include "Galaxy/Events/KeyEvent.h"
 #include "Galaxy/Events/MouseEvent.h"

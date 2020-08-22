@@ -2,14 +2,14 @@
 
 #include "Core.h"
 
-#include "Galaxy/LayerStack.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
-#include "Events/KeyEvent.h"
-#include "Events/MouseEvent.h"
+#include "Galaxy/Core/LayerStack.h"
+#include "Galaxy/Events/Event.h"
+#include "Galaxy/Events/ApplicationEvent.h"
+#include "Galaxy/Events/KeyEvent.h"
+#include "Galaxy/Events/MouseEvent.h"
 #include "Window.h"
 
-#include "Core/Timestep.h"
+#include "Galaxy/Core/Timestep.h"
 
 #include "Galaxy/ImGui/ImGuiLayer.h"
 

@@ -6,7 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <fstream>
-#include "Galaxy/Log.h"
+#include "Galaxy/Core/Log.h"
 namespace Galaxy
 {
 

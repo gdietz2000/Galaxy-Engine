@@ -141,32 +141,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Galaxy.h" />
-    <ClInclude Include="src\Galaxy\Application.h" />
-    <ClInclude Include="src\Galaxy\Core.h" />
+    <ClInclude Include="src\Galaxy\Core\Application.h" />
+    <ClInclude Include="src\Galaxy\Core\Core.h" />
+    <ClInclude Include="src\Galaxy\Core\EntryPoint.h" />
+    <ClInclude Include="src\Galaxy\Core\Input.h" />
+    <ClInclude Include="src\Galaxy\Core\Keycodes.h" />
+    <ClInclude Include="src\Galaxy\Core\Layer.h" />
+    <ClInclude Include="src\Galaxy\Core\LayerStack.h" />
+    <ClInclude Include="src\Galaxy\Core\Log.h" />
+    <ClInclude Include="src\Galaxy\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Galaxy\Core\Timestep.h" />
-    <ClInclude Include="src\Galaxy\EntryPoint.h" />
+    <ClInclude Include="src\Galaxy\Core\Window.h" />
     <ClInclude Include="src\Galaxy\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Galaxy\Events\Event.h" />
     <ClInclude Include="src\Galaxy\Events\KeyEvent.h" />
     <ClInclude Include="src\Galaxy\Events\MouseEvent.h" />
     <ClInclude Include="src\Galaxy\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Galaxy\Input.h" />
-    <ClInclude Include="src\Galaxy\Keycodes.h" />
-    <ClInclude Include="src\Galaxy\Layer.h" />
-    <ClInclude Include="src\Galaxy\LayerStack.h" />
-    <ClInclude Include="src\Galaxy\Log.h" />
-    <ClInclude Include="src\Galaxy\MouseButtonCodes.h" />
-    <ClInclude Include="src\Galaxy\OrthographicCameraController.h" />
     <ClInclude Include="src\Galaxy\Renderer\Buffer.h" />
     <ClInclude Include="src\Galaxy\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Galaxy\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Galaxy\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Galaxy\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Galaxy\Renderer\Renderer.h" />
     <ClInclude Include="src\Galaxy\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Galaxy\Renderer\Shader.h" />
     <ClInclude Include="src\Galaxy\Renderer\Texture.h" />
     <ClInclude Include="src\Galaxy\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Galaxy\Window.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLRendererAPI.h" />
@@ -587,14 +587,14 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Galaxy\Application.cpp" />
+    <ClCompile Include="src\Galaxy\Core\Application.cpp" />
+    <ClCompile Include="src\Galaxy\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Galaxy\Core\Log.cpp" />
     <ClCompile Include="src\Galaxy\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Galaxy\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Galaxy\LayerStack.cpp" />
-    <ClCompile Include="src\Galaxy\Log.cpp" />
-    <ClCompile Include="src\Galaxy\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Galaxy\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\RendererAPI.cpp" />

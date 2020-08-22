@@ -1,7 +1,7 @@
 #include "gxpch.h"
 
-#include "Galaxy/Input.h"
-#include "Galaxy/Keycodes.h"
+#include "Galaxy/Core/Input.h"
+#include "Galaxy/Core/Keycodes.h"
 
 #include "OrthographicCameraController.h"
 

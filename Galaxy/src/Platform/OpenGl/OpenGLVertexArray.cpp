@@ -23,6 +23,7 @@ namespace Galaxy
 		}
 
 		GX_CORE_ASSERT(false, "Unknown Shader Type");
+		return 0;
 	}
 
 	OpenGLVertexArray::OpenGLVertexArray()

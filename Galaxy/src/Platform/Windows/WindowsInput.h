@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Galaxy/Input.h"
+#include "Galaxy/Core/Input.h"
 
 namespace Galaxy
 {

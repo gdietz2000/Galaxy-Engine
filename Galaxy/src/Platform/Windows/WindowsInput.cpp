@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include <GLFW/glfw3.h>
-#include "Galaxy/Application.h"
+#include "Galaxy/Core/Application.h"
 
 namespace Galaxy
 {

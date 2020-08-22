@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Galaxy/Core.h"
+#include "Galaxy/Core/Core.h"
 
 namespace Galaxy
 {

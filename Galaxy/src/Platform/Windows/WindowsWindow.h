@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Galaxy/Window.h"
+#include "Galaxy/Core/Window.h"
 #include "Galaxy/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

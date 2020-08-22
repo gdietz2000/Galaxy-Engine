@@ -2,7 +2,7 @@
 #include "Buffer.h"
 
 #include "Renderer.h"
-#include "Galaxy/Log.h"
+#include "Galaxy/Core/Log.h"
 
 #include "Platform/OpenGl/OpenGLBuffer.h"
 

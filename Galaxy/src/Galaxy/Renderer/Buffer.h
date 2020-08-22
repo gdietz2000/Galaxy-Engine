@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Galaxy/Log.h"
+#include "Galaxy/Core/Log.h"
 
 namespace Galaxy
 {
@@ -59,6 +59,8 @@ namespace Galaxy
 			case ShaderDataType::Int4:		return 4;
 			case ShaderDataType::Bool:		return 1;
 			}
+
+			return 0;
 		}
 	};
 
