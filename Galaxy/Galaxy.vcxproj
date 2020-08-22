@@ -156,6 +156,7 @@
     <ClInclude Include="src\Galaxy\LayerStack.h" />
     <ClInclude Include="src\Galaxy\Log.h" />
     <ClInclude Include="src\Galaxy\MouseButtonCodes.h" />
+    <ClInclude Include="src\Galaxy\OrthographicCameraController.h" />
     <ClInclude Include="src\Galaxy\Renderer\Buffer.h" />
     <ClInclude Include="src\Galaxy\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Galaxy\Renderer\OrthographicCamera.h" />
@@ -591,6 +592,7 @@
     <ClCompile Include="src\Galaxy\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Galaxy\LayerStack.cpp" />
     <ClCompile Include="src\Galaxy\Log.cpp" />
+    <ClCompile Include="src\Galaxy\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\RenderCommand.cpp" />

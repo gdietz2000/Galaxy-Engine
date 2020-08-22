@@ -14,6 +14,8 @@
 
 #include "Galaxy/Core/Timestep.h"
 
+#include "Galaxy/OrthographicCameraController.h"
+
 #include "Galaxy/Renderer/Renderer.h"
 #include "Galaxy/Renderer/RenderCommand.h"
 #include "Galaxy/Renderer/Buffer.h"
