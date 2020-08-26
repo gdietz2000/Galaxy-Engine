@@ -15,6 +15,7 @@
 #include "Galaxy/Core/Timestep.h"
 
 #include "Galaxy/Renderer/Renderer.h"
+#include "Galaxy/Renderer/Renderer2D.h"
 #include "Galaxy/Renderer/RenderCommand.h"
 #include "Galaxy/Renderer/Buffer.h"
 #include "Galaxy/Renderer/Shader.h"
