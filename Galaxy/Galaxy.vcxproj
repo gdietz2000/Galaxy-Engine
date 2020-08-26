@@ -152,6 +152,7 @@
     <ClInclude Include="src\Galaxy\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Galaxy\Core\Timestep.h" />
     <ClInclude Include="src\Galaxy\Core\Window.h" />
+    <ClInclude Include="src\Galaxy\Debug\Instrumentor.h" />
     <ClInclude Include="src\Galaxy\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Galaxy\Events\Event.h" />
     <ClInclude Include="src\Galaxy\Events\KeyEvent.h" />

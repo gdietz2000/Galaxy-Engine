@@ -14,6 +14,8 @@ namespace Galaxy
 
 	void OpenGLContext::Init()
 	{
+		GX_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		GX_CORE_ASSERT(status, "Failed to initialized Glad!");
@@ -27,9 +29,8 @@ namespace Galaxy
 
 	void OpenGLContext::SwapBuffers()
 	{
-		glBegin(GL_TRIANGLES);
+		GX_PROFILE_FUNCTION();
 
-		glEnd();
 		glfwSwapBuffers(m_WindowHandle);
 	}
 }

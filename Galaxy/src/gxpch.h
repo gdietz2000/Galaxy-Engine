@@ -12,6 +12,8 @@
 #include <vector>
 #include <map>
 
+#include "Galaxy/Debug/Instrumentor.h"
+
 #ifdef GX_PLATFORM_WINDOWS
 	#include <windows.h>
 #endif

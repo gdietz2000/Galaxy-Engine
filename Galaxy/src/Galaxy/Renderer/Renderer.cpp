@@ -10,6 +10,8 @@ namespace Galaxy
 
 	void Renderer::Init()
 	{
+		GX_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}

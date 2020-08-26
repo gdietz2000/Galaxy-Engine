@@ -19,6 +19,8 @@ namespace Galaxy
 
 	Application::Application()
 	{
+		GX_PROFILE_FUNCTION();
+
 		GX_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
