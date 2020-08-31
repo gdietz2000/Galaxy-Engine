@@ -48,13 +48,16 @@ void Sandbox2D::OnUpdate(Galaxy::Timestep ts)
 	}
 
 	{
+		static float rotation = 0.0f;
+		rotation += ts * 50.0;
+
 		GX_PROFILE_SCOPE("Renderer Draw");
 		Galaxy::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		//Galaxy::Renderer2D::DrawRotatedQuad({ -1.0f,0.0f }, { 0.8f,0.8f }, glm::radians(-45.0f), { 0.2f,0.3f,0.8f,1.0f });
+		Galaxy::Renderer2D::DrawRotatedQuad({ 1.0f,0.0f }, { 0.8f,0.8f }, rotation, { 0.8f,0.3f,0.2f,1.0f });
 		Galaxy::Renderer2D::DrawQuad({ -1.0f,0.0f }, { 0.8f,0.8f }, { 0.2f,0.3f,0.8f,1.0f });
 		Galaxy::Renderer2D::DrawQuad({ 0.5f,-0.5f }, { 0.5f,0.75f }, { 0.8f,0.3f,0.2f,1.0f });
-		Galaxy::Renderer2D::DrawQuad({ -5.0f,-5.0f, -0.1f }, { 10.0f,10.0f }, m_CheckerboardTexture, 10.0f);
-		Galaxy::Renderer2D::DrawQuad({ -0.5f,-0.5f, 0.0f }, { 1.0f,1.0f }, m_CheckerboardTexture, 20.0f);
+		Galaxy::Renderer2D::DrawQuad({ 0.0,-0.0, -0.1f }, { 10.0f,10.0f }, m_CheckerboardTexture, 10.0f);
+		Galaxy::Renderer2D::DrawRotatedQuad({ 0,0, 0.0f }, { 1.0f,1.0f }, 45, m_CheckerboardTexture, 20.0f);
 		Galaxy::Renderer2D::EndScene(); 
 	}
 }
