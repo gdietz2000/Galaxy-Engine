@@ -9,6 +9,15 @@
 
 namespace Galaxy
 {
+	struct OrthographicCameraBounds
+	{
+		float Left, Right;
+		float Bottom, Top;
+
+		float GetWidth() { return Right - Left; }
+		float GetHeight() { return Top - Bottom; }
+	};
+
 	class OrthographicCameraController
 	{
 	public:
@@ -22,6 +31,8 @@ namespace Galaxy
 
 		inline float GetZoomLevel() { return m_ZoomLevel; }
 		inline void SetZoomLevel(float level) { m_ZoomLevel = level; }
+
+		const OrthographicCameraBounds& GetBounds() { return m_Bounds; }
 	private:
 		bool OnMouseScrolledEvent(MouseScrolledEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
@@ -30,6 +41,7 @@ namespace Galaxy
 		bool m_Rotation;
 		float m_AspectRatio;
 		float m_ZoomLevel = 1.0f;
+		OrthographicCameraBounds m_Bounds;
 		OrthographicCamera m_Camera;
 
 
