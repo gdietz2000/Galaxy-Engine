@@ -18,7 +18,7 @@ namespace Galaxy
 			: Title(title), Width(width), Height(height) {}
 	};
 
-	class GALAXY_API Window
+	class  Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

@@ -4,7 +4,7 @@
 
 namespace Galaxy
 {
-	class GALAXY_API LayerStack
+	class  LayerStack
 	{
 	public:
 		LayerStack();

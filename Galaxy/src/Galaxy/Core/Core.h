@@ -2,24 +2,23 @@
 
 #include <memory>
 
-#ifdef GX_PLATFORM_WINDOWS
-	#if GX_DYNAMIC_LINK
-		#ifdef GX_BUILD_DLL
-			#define GALAXY_API __declspec(dllexport)
-		#else
-			#define GALAXY_API __declspec(dllimport)
-		#endif
-	#else
-		#define GALAXY_API
+#ifdef _WIN32
+	#ifdef _WIN64
+		#define GX_PLATFORM_WINDOWS
+	#elif
+		#error Galaxy does not support Win32!
 	#endif
 #else
-	#error Galaxy only supports windows!
+#error We dont support anything else!
 #endif
 
 #ifdef GX_DEBUG
 	#define GX_ENABLE_ASSERTS
 #endif
 
+#ifdef GX_DEBUG
+	#define GX_ENABLE_ASSERTS
+#endif
 
 #ifdef GX_ENABLE_ASSERTS
 	#define GX_ASSERT(x, ...) { if(!(x)) { GX_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }

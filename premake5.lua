@@ -18,6 +18,7 @@ IncludeDir["GLAD"] = "Galaxy/vendor/Glad/include"
 IncludeDir["ImGui"] = "Galaxy/vendor/ImGui"
 IncludeDir["glm"] = "Galaxy/vendor/glm"
 IncludeDir["stb_image"] = "Galaxy/vendor/stb_image"
+IncludeDir["entt"] = "Galaxy/vendor/entt/include"
 
 group "Dependencies"
 	include "Galaxy/vendor/GLFW"
@@ -56,7 +57,8 @@ group ""
 			"%{IncludeDir.GLAD}",
 			"%{IncludeDir.ImGui}",
 			"%{IncludeDir.glm}",
-			"%{IncludeDir.stb_image}"
+			"%{IncludeDir.stb_image}",
+			"%{IncludeDir.entt}"			
 		}
 
 		defines
@@ -118,7 +120,8 @@ group ""
 			"Galaxy/src",
 			"Galaxy/vendor/spdlog/include",
 			"%{IncludeDir.glm}",
-			"Galaxy/vendor"
+			"Galaxy/vendor",
+			"%{IncludeDir.entt}"
 		}
 
 		links
@@ -170,7 +173,8 @@ group ""
 			"Galaxy/src",
 			"Galaxy/vendor/spdlog/include",
 			"%{IncludeDir.glm}",
-			"Galaxy/vendor"
+			"Galaxy/vendor",
+			"%{IncludeDir.entt}"
 		}
 
 		links
