@@ -62,6 +62,16 @@ namespace Galaxy
 
 	}
 
+	void ImGuiLayer::OnEvent(Event& e)
+	{
+		if (m_BlockEvents)
+		{
+			ImGuiIO io = ImGui::GetIO();
+			e.m_Handled |= e.IsInCategory(CategoryMouse) & io.WantCaptureMouse;
+			e.m_Handled |= e.IsInCategory(CategoryKeyboard) & io.WantCaptureKeyboard;
+		}
+	}
+
 	void ImGuiLayer::Begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();

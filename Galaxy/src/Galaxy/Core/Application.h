@@ -28,6 +28,8 @@ namespace Galaxy
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
+
 		void Close();
 
 		static inline Application& Get() { return *s_Instance; }

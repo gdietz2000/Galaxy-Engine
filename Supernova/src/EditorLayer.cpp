@@ -44,7 +44,8 @@ namespace Galaxy
 		//Update
 		{
 			GX_PROFILE_SCOPE("CameraController::OnUpdate");
-			m_CameraController.OnUpdate(ts);
+			if (m_ViewportFocused)
+				m_CameraController.OnUpdate(ts);
 		}
 
 		//Render
@@ -173,6 +174,10 @@ namespace Galaxy
 		ImGui::Begin("Viewport");
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+		Application::Get().GetImGuiLayer()->SetBlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+		
 		if (m_ViewportSize != *((glm::vec2*) & viewportPanelSize))
 		{
 			m_FrameBuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
