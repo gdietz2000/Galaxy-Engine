@@ -1,5 +1,6 @@
 workspace "Galaxy"
 	architecture "x64"
+	startproject "Supernova"
 
 	configurations
 	{
@@ -7,8 +8,6 @@ workspace "Galaxy"
 		"Release",
 		"Dist"
 	}
-
-	startproject "Sandbox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -98,8 +97,8 @@ group ""
 			runtime "Release"
 			optimize "On"
 
-	project "Galaxy-Editor"
-		location "Galaxy-Editor"
+	project "Supernova"
+		location "Supernova"
 		kind "ConsoleApp"
 		language "C++"
 		cppdialect "C++17" 

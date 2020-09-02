@@ -178,7 +178,6 @@
     <ClInclude Include="src\Platform\OpenGl\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\gxpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />

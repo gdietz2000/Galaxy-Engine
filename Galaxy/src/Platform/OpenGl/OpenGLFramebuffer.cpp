@@ -58,4 +58,12 @@ namespace Galaxy
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
+
+	void OpenGLFramebuffer::Resize(uint32_t width, uint32_t height)
+	{
+		m_Specifications.width = width;
+		m_Specifications.height = height;
+
+		Invalidate();
+	}
 }

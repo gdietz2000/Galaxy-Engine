@@ -16,6 +16,8 @@ namespace Galaxy
 
 		virtual uint32_t GetColorAttachmentRendererID() const override { return m_ColorAttachment; };
 
+		virtual void Resize(uint32_t width, uint32_t height) override;
+
 		virtual const FramebufferSpecification& GetSpecification() const override { return m_Specifications; }
 	private:
 		uint32_t m_RendererID;

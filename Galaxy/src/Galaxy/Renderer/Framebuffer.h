@@ -17,6 +17,8 @@ namespace Galaxy
 	{
 	public:
 
+		virtual ~Framebuffer() {};
+
 		virtual void Bind() = 0;
 		virtual void Unbind() = 0;
 
@@ -25,6 +27,8 @@ namespace Galaxy
 		virtual const FramebufferSpecification& GetSpecification() const = 0;
 
 		static Ref<Framebuffer> Create(const FramebufferSpecification& specs);
+
+		virtual void Resize(uint32_t width, uint32_t height) = 0;
 	private:
 	};
 }

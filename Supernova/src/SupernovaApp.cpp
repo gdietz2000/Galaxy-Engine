@@ -5,20 +5,20 @@
 
 namespace Galaxy
 {
-	class GalaxyEditor : public Application
+	class Supernova : public Application
 	{
 	public:
-		GalaxyEditor()
-			:Application("Galaxy Editor")
+		Supernova()
+			:Application("Supernova Editor")
 		{
 			PushLayer(new EditorLayer());
 		}
 
-		~GalaxyEditor() {}
+		~Supernova() {}
 	};
 
 	Application* CreateApplication()
 	{
-		return new GalaxyEditor();
+		return new Supernova();
 	}
 }
