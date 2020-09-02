@@ -23,6 +23,7 @@
 #include "Galaxy/Renderer/VertexArray.h"
 #include "Galaxy/Renderer/OrthographicCamera.h"
 #include "Galaxy/Renderer/OrthographicCameraController.h"
+#include "Galaxy/Renderer/Framebuffer.h"
 
 
 //#include "Galaxy/Core/EntryPoint.h"

@@ -1,0 +1,1 @@
+{"otherData": {},"traceEvents":[{"cat":"function","dur":56186,"name":"void __cdecl Galaxy::WindowsWindow::Shutdown(void)","ph":"X","pid":0,"tid":1836904012,"ts":16117491586},{"cat":"function","dur":56265,"name":"__cdecl Galaxy::WindowsWindow::~WindowsWindow(void)","ph":"X","pid":0,"tid":1836904012,"ts":16117491586}]}

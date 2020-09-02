@@ -159,6 +159,8 @@
     <ClInclude Include="src\Galaxy\Events\MouseEvent.h" />
     <ClInclude Include="src\Galaxy\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Galaxy\Renderer\Buffer.h" />
+    <ClInclude Include="src\Galaxy\Renderer\Camera.h" />
+    <ClInclude Include="src\Galaxy\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Galaxy\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Galaxy\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Galaxy\Renderer\OrthographicCameraController.h" />
@@ -171,6 +173,7 @@
     <ClInclude Include="src\Galaxy\Renderer\VertexArray.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGl\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLTexture.h" />
@@ -595,6 +598,7 @@
     <ClCompile Include="src\Galaxy\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Galaxy\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Galaxy\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Galaxy\Renderer\RenderCommand.cpp" />
@@ -606,6 +610,7 @@
     <ClCompile Include="src\Galaxy\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGl\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLTexture.cpp" />

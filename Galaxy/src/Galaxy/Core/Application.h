@@ -18,7 +18,7 @@ namespace Galaxy
 	class GALAXY_API Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Galaxy App");
 		virtual ~Application();
 
 		virtual void Run();
