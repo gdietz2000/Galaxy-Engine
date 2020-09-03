@@ -4,7 +4,9 @@
 
 #ifdef _WIN32
 	#ifdef _WIN64
-		#define GX_PLATFORM_WINDOWS
+		#ifndef GX_PLATFORM_WINDOWS
+			#define GX_PLATFORM_WINDOWS
+		#endif	
 	#elif
 		#error Galaxy does not support Win32!
 	#endif

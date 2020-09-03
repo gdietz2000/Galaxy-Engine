@@ -25,5 +25,8 @@
 #include "Galaxy/Renderer/OrthographicCameraController.h"
 #include "Galaxy/Renderer/Framebuffer.h"
 
+#include "Galaxy/Scene/Scene.h"
+#include "Galaxy/Scene/Component.h"
+#include "Galaxy/Scene/Entity.h"
 
 //#include "Galaxy/Core/EntryPoint.h"

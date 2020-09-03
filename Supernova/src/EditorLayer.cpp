@@ -30,6 +30,20 @@ namespace Galaxy
 		fbSpecs.width = Application::Get().GetWindow().GetWidth();
 		fbSpecs.height = Application::Get().GetWindow().GetHeight();
 		m_FrameBuffer = Framebuffer::Create(fbSpecs);
+
+		m_ActiveScene = CreateRef<Scene>();
+
+		auto square = m_ActiveScene->CreateEntity("Square");
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0, 1.0, 0.0, 1.0 });
+
+		m_SquareEntity = square;
+
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+		m_CameraEntity.AddComponent<CameraComponent>();
+
+		m_ClipSpaceCamera = m_ActiveScene->CreateEntity("Clip-Space Entity");
+		auto& cc = m_ClipSpaceCamera.AddComponent<CameraComponent>();
+		cc.Primary = false;
 	}
 
 	void EditorLayer::OnDetach()
@@ -41,48 +55,35 @@ namespace Galaxy
 	{
 		GX_PROFILE_FUNCTION();
 
-		//Update
+		//Resize
+		FramebufferSpecification spec = m_FrameBuffer->GetSpecification();
+		if (m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
+			(spec.width != m_ViewportSize.x || spec.height != m_ViewportSize.y))
 		{
-			GX_PROFILE_SCOPE("CameraController::OnUpdate");
-			if (m_ViewportFocused)
-				m_CameraController.OnUpdate(ts);
+			m_FrameBuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_CameraController.ResizeBounds(m_ViewportSize.x, m_ViewportSize.y);
+
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
+
+		if (m_ViewportFocused)
+			m_CameraController.OnUpdate(ts);
+
 
 		//Render
 		Renderer2D::ResetStats();
-		{
-			GX_PROFILE_SCOPE("Renderer Prep");
-			m_FrameBuffer->Bind();
+		m_FrameBuffer->Bind();
 
-			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-			RenderCommand::Clear();
-		}
+		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		RenderCommand::Clear();
 
-		{
-			static float rotation = 0.0f;
-			rotation += ts * 50.0;
+		//Update Scene
 
-			GX_PROFILE_SCOPE("Renderer Draw");
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
-			Renderer2D::DrawRotatedQuad({ 1.0f,0.0f }, { 0.8f,0.8f }, glm::radians(-45.0f), { 0.2f,0.3f,0.8f,1.0f });
-			Renderer2D::DrawQuad({ -1.0f,0.0f }, { 0.8f,0.8f }, { 0.8f,0.3f,0.2f,1.0f });
-			Renderer2D::DrawQuad({ 0.5f,-0.5f }, { 0.5f,0.75f }, { 0.8f,0.3f,0.2f,1.0f });
-			Renderer2D::DrawQuad({ 0.0,0.0, -0.1f }, { 10.0f,10.0f }, m_CheckerboardTexture, 10.0f);
-			Renderer2D::DrawRotatedQuad({ -2,0, 0.0f }, { 1.0f,1.0f }, glm::radians(rotation), m_CheckerboardTexture, 20.0f);
-			Renderer2D::EndScene();
+		m_ActiveScene->OnUpdate(ts);
 
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
-			for (float y = -4.75f; y < 5.25f; y += 0.5f)
-			{
-				for (float x = -4.75f; x < 5.25f; x += 0.5f)
-				{
-					glm::vec4 color = { (x + 5) / 10, 0.4f, (y + 5) / 10 , 0.75f };
-					Renderer2D::DrawQuad({ x,y }, { 0.45f, 0.45f }, color);
-				}
-			}
-			Renderer2D::EndScene();
-			m_FrameBuffer->Unbind();
-		}
+
+		m_FrameBuffer->Unbind();
+
 	}
 
 	void EditorLayer::OnEvent(Event& event)
@@ -166,7 +167,32 @@ namespace Galaxy
 		ImGui::Text("Quad Count: %d", stats.QuadCount);
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
+		if (m_SquareEntity)
+		{
+			ImGui::Separator();
+			ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
+
+			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+		}
+
+		ImGui::DragFloat3("Camera Transform", glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+
+		if (ImGui::Checkbox("Camera A", &m_PrimaryCamera))
+		{
+			m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
+			m_ClipSpaceCamera.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
+		}
+		
+		{
+			auto& camera = m_ClipSpaceCamera.GetComponent<CameraComponent>().Camera;
+			float orthoSize = camera.GetOrthographicSize();
+			if (ImGui::DragFloat("Second Camera Orthographic Size", &orthoSize))
+				camera.SetOrthographicSize(orthoSize);
+		}
+
+
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 1.0f, 1.0f });
@@ -177,14 +203,9 @@ namespace Galaxy
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
 		Application::Get().GetImGuiLayer()->SetBlockEvents(!m_ViewportFocused || !m_ViewportHovered);
-		
-		if (m_ViewportSize != *((glm::vec2*) & viewportPanelSize) && viewportPanelSize.x > 0 && viewportPanelSize.y > 0)
-		{
-			m_FrameBuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
-			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
-			m_CameraController.ResizeBounds(viewportPanelSize.x, viewportPanelSize.y);
-		}
+		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+		m_CameraController.ResizeBounds(viewportPanelSize.x, viewportPanelSize.y);
 
 		uint32_t textureID = m_FrameBuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2(m_ViewportSize.x, m_ViewportSize.y), ImVec2(0, 1), ImVec2(1, 0));

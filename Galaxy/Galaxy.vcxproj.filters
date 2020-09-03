@@ -1404,7 +1404,10 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Galaxy\Core\Scene.h" />
+    <ClInclude Include="src\Galaxy\Scene\Scene.h" />
+    <ClInclude Include="src\Galaxy\Scene\Component.h" />
+    <ClInclude Include="src\Galaxy\Scene\Entity.h" />
+    <ClInclude Include="src\Galaxy\Scene\SceneCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Galaxy\Core\Application.cpp">
@@ -1488,6 +1491,8 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Galaxy\Core\Scene.cpp" />
+    <ClCompile Include="src\Galaxy\Scene\Scene.cpp" />
+    <ClCompile Include="src\Galaxy\Scene\Entity.cpp" />
+    <ClCompile Include="src\Galaxy\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>
