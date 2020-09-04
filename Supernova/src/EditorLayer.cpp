@@ -11,6 +11,7 @@
 
 namespace Galaxy
 {
+
 	EditorLayer::EditorLayer()
 		: Layer("EditorLayer"), m_CameraController(16.0f / 9.0f)
 	{
@@ -24,7 +25,7 @@ namespace Galaxy
 
 	void EditorLayer::OnAttach()
 	{
-		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
+		m_CheckerboardTexture = Texture2D::Create("Supernova/assets/textures/Checkerboard.png");
 
 		FramebufferSpecification fbSpecs;
 		fbSpecs.width = Application::Get().GetWindow().GetWidth();
@@ -50,7 +51,12 @@ namespace Galaxy
 		public:
 			void OnCreate()
 			{
-				
+
+			}
+
+			void OnDestroy()
+			{
+
 			}
 
 			void OnUpdate(Timestep ts)
@@ -67,15 +73,12 @@ namespace Galaxy
 				if (Input::IsKeyPressed(GX_KEY_S))
 					transform[3][1] -= speed * ts;
 			}
-
-			void OnDestroy()
-			{
-
-			}
 		};
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		m_ClipSpaceCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach()
@@ -190,6 +193,10 @@ namespace Galaxy
 
 			ImGui::EndMenuBar();
 		}
+
+		m_SceneHierarchyPanel.OnImGuiRender();
+
+		ImGui::ShowDemoWindow();
 
 		ImGui::Begin("Settings");
 

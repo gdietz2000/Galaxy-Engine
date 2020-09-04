@@ -1,0 +1,30 @@
+(?)
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout & Scrolling ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ## Renderer2D Stats:
+Draw Calls: 1
+Quad Count: 1
+Vertices: 4
+Indices: 6
+--------------------------------
+Square
+R:  0 G:255 B:  0 A:255
+Square Color
+0.000 0.000 0.000
+Camera Transform
+[x]
+Camera A
+10.000
+Second Camera Orthographic Size
