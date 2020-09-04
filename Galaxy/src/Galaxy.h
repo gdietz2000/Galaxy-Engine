@@ -28,5 +28,6 @@
 #include "Galaxy/Scene/Scene.h"
 #include "Galaxy/Scene/Component.h"
 #include "Galaxy/Scene/Entity.h"
+#include "Galaxy/Scene/ScriptableEntity.h"
 
 //#include "Galaxy/Core/EntryPoint.h"

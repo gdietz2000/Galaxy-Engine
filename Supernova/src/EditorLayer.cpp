@@ -44,6 +44,38 @@ namespace Galaxy
 		m_ClipSpaceCamera = m_ActiveScene->CreateEntity("Clip-Space Entity");
 		auto& cc = m_ClipSpaceCamera.AddComponent<CameraComponent>();
 		cc.Primary = false;
+
+		struct CameraController : public ScriptableEntity
+		{
+		public:
+			void OnCreate()
+			{
+				
+			}
+
+			void OnUpdate(Timestep ts)
+			{
+				auto& transform = GetComponent<TransformComponent>().Transform;
+				float speed = 5.0f;
+
+				if (Input::IsKeyPressed(GX_KEY_A))
+					transform[3][0] -= speed * ts;
+				if (Input::IsKeyPressed(GX_KEY_D))
+					transform[3][0] += speed * ts;
+				if (Input::IsKeyPressed(GX_KEY_W))
+					transform[3][1] += speed * ts;
+				if (Input::IsKeyPressed(GX_KEY_S))
+					transform[3][1] -= speed * ts;
+			}
+
+			void OnDestroy()
+			{
+
+			}
+		};
+
+		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
 	}
 
 	void EditorLayer::OnDetach()
