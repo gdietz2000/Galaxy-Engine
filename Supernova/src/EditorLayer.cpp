@@ -25,7 +25,7 @@ namespace Galaxy
 
 	void EditorLayer::OnAttach()
 	{
-		m_CheckerboardTexture = Texture2D::Create("Supernova/assets/textures/Checkerboard.png");
+		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
 
 		FramebufferSpecification fbSpecs;
 		fbSpecs.width = Application::Get().GetWindow().GetWidth();
@@ -113,6 +113,12 @@ namespace Galaxy
 		RenderCommand::Clear();
 
 		//Update Scene
+
+		static float value = -ts;
+		value += ts;
+
+		float noise = perlin.noise(value, value);
+		m_SquareEntity.GetComponent<SpriteRendererComponent>().Color = glm::vec4(noise, noise, noise, 1.0f);
 
 		m_ActiveScene->OnUpdate(ts);
 

@@ -2,6 +2,8 @@
 
 #include <Galaxy.h>
 
+#include "PerlinNoise2D.h"
+
 #include "Panels/SceneHierarchy.h"
 
 namespace Galaxy
@@ -30,6 +32,9 @@ namespace Galaxy
 
 		Ref<Scene> m_ActiveScene;
 		Entity m_SquareEntity;
+
+		PerlinNoise2D perlin;
+
 		Entity m_CameraEntity;
 		Entity m_ClipSpaceCamera;
 
