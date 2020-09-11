@@ -22,6 +22,9 @@
     <Filter Include="src\Galaxy\Renderer">
       <UniqueIdentifier>{E8D6FF5A-5438-DD68-DDA5-231B49061428}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Galaxy\Scene">
+      <UniqueIdentifier>{9FF7D9F3-8BF0-F845-B422-DECAA07AD851}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
@@ -149,6 +152,21 @@
     </ClInclude>
     <ClInclude Include="src\Galaxy\Renderer\VertexArray.h">
       <Filter>src\Galaxy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Scene\Component.h">
+      <Filter>src\Galaxy\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Scene\Entity.h">
+      <Filter>src\Galaxy\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Scene\Scene.h">
+      <Filter>src\Galaxy\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Scene\SceneCamera.h">
+      <Filter>src\Galaxy\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Galaxy\Scene\ScriptableEntity.h">
+      <Filter>src\Galaxy\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGl</Filter>
@@ -1404,11 +1422,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Galaxy\Scene\Scene.h" />
-    <ClInclude Include="src\Galaxy\Scene\Component.h" />
-    <ClInclude Include="src\Galaxy\Scene\Entity.h" />
-    <ClInclude Include="src\Galaxy\Scene\SceneCamera.h" />
-    <ClInclude Include="src\Galaxy\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Galaxy\Core\Application.cpp">
@@ -1459,6 +1472,15 @@
     <ClCompile Include="src\Galaxy\Renderer\VertexArray.cpp">
       <Filter>src\Galaxy\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Galaxy\Scene\Entity.cpp">
+      <Filter>src\Galaxy\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Galaxy\Scene\Scene.cpp">
+      <Filter>src\Galaxy\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Galaxy\Scene\SceneCamera.cpp">
+      <Filter>src\Galaxy\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGl\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGl</Filter>
     </ClCompile>
@@ -1492,8 +1514,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Galaxy\Scene\Scene.cpp" />
-    <ClCompile Include="src\Galaxy\Scene\Entity.cpp" />
-    <ClCompile Include="src\Galaxy\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

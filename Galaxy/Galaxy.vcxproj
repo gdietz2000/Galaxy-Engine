@@ -150,9 +150,6 @@
     <ClInclude Include="src\Galaxy\Core\LayerStack.h" />
     <ClInclude Include="src\Galaxy\Core\Log.h" />
     <ClInclude Include="src\Galaxy\Core\MouseButtonCodes.h" />
-    <ClInclude Include="src\Galaxy\Scene\Component.h" />
-    <ClInclude Include="src\Galaxy\Scene\Entity.h" />
-    <ClInclude Include="src\Galaxy\Scene\Scene.h" />
     <ClInclude Include="src\Galaxy\Core\Timestep.h" />
     <ClInclude Include="src\Galaxy\Core\Window.h" />
     <ClInclude Include="src\Galaxy\Debug\Instrumentor.h" />
@@ -174,6 +171,9 @@
     <ClInclude Include="src\Galaxy\Renderer\Shader.h" />
     <ClInclude Include="src\Galaxy\Renderer\Texture.h" />
     <ClInclude Include="src\Galaxy\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Galaxy\Scene\Component.h" />
+    <ClInclude Include="src\Galaxy\Scene\Entity.h" />
+    <ClInclude Include="src\Galaxy\Scene\Scene.h" />
     <ClInclude Include="src\Galaxy\Scene\SceneCamera.h" />
     <ClInclude Include="src\Galaxy\Scene\ScriptableEntity.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h" />
